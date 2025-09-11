@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://0cfh06x7tfp6"]
+
+[ext_resource type="PackedScene" uid="uid://bicorb7we351t" path="res://art/mob.glb" id="1_dy6sc"]
+[ext_resource type="Script" uid="uid://wbr5db8eultn" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="PackedScene" uid="uid://nsemp2s2f8l7" path="res://art/Skull.fbx" id="3_p11y5"]
+[ext_resource type="Animation" uid="uid://2plpic1wjt4s" path="res://float.res" id="3_ubaqv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nokgg"]
+size = Vector3(2.44475, 1, 2.90005)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p11y5"]
+_data = {
+&"float": ExtResource("3_ubaqv")
+}
+
+[node name="Mob" type="CharacterBody3D" groups=["mob"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.497819, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_nokgg")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Character" parent="Pivot" instance=ExtResource("1_dy6sc")]
+transform = Transform3D(1, 0, 0, 0, 0.987688, 0.156434, 0, -0.156434, 0.987688, 0, 0.35, 0)
+visible = false
+
+[node name="Skull" parent="Pivot" instance=ExtResource("3_p11y5")]
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00368161, 0.321221, 0.0886655)
+shape = SubResource("BoxShape3D_nokgg")
+
+[node name="VisibleOnScreenEnabler3D" type="VisibleOnScreenEnabler3D" parent="."]
+aabb = AABB(-1.18975, -1, -1.93344, 2.37949, 2, 3.86688)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"float": SubResource("AnimationLibrary_p11y5")
+}
+autoplay = "float/float"
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler3D" to="." method="_on_visible_on_screen_enabler_3d_screen_exited"]

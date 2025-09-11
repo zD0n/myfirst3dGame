@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg3ey68r078uv"]
+
+[ext_resource type="AudioStream" uid="uid://b48pjisf3q41m" path="res://art/LittleStar.mp3" id="1_fvyft"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_fvyft")
+volume_db = -50.0
+autoplay = true
