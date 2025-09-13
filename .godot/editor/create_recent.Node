@@ -1,10 +1,11 @@
+StaticBody3D
+Area3D
+CollisionShape3D
 Label
 AnimationPlayer
 AudioStreamPlayer
 ColorRect
 Control
-CollisionShape3D
-Area3D
 Timer
 PathFollow3D
 Path3D
